@@ -111,7 +111,10 @@ GEM
       responders
       warden (~> 1.2.3)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     diff-lcs (1.6.0)
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     drb (2.2.1)
@@ -296,8 +299,11 @@ DEPENDENCIES
   debug
   devise
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   factory_bot_rails
   faker
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   importmap-rails
