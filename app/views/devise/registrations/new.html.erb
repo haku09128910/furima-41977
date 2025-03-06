@@ -2,7 +2,7 @@
      <%= stylesheet_link_tag "user/registration", media: "all" %>
      <%= stylesheet_link_tag "user/registration", media: "all" %>
     <% end %>
-<a href="/"><img class="second-logo" src="/assets/furima-logo-color.png"></a>
+<%= render 'shared/second-header' %>
 <form class="registration-main" action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="F7EsEozvXmcUvCX0X75Z/OxyLnXzulBObHIbjhQia1jzLKdo5e/J59rVuMkLsB5lE3zk2S8bYy8WqYoQA1Jskw==" autocomplete="off">
 <div class="form-wrap">
   <div class="form-header">
@@ -235,3 +235,4 @@
   <p class="register-info">本人情報の登録について</p>
 </div>
 </form>
+  <%= render 'shared/second-footer' %>
