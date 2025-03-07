@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+ /* 既存のCSS修正 */
+.logout-link {
+  position: fixed;
+  top: 10px; /* 画面の上からの距離 */
+  right: 10px; /* 画面の右からの距離 */
+  background-color: #f4f4f4;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+}
