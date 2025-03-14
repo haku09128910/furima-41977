@@ -2,8 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    # トップページの処理
-    @items = Item.all
+    @items = Item.order(created_at: :desc)
   end
 
   def new
@@ -24,4 +23,5 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :description, :price, :category_id, :status_id, :shipping_fee_id, :prefecture_id, :delivery_day_id, :image).merge(user_id: current_user.id)
   end
+
 end
