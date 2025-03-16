@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show,]
 
   def index
     @items = Item.order(created_at: :desc)
@@ -16,6 +16,15 @@ class ItemsController < ApplicationController
     else
       render :new, status: :unprocessable_entity # 失敗時は出品ページを再表示
     end
+  end
+
+  def edit
+    @tweet = Item.find(params[:id])
+  end
+
+  def show
+    @item = Item.find(params[:id])
+
   end
 
   private
