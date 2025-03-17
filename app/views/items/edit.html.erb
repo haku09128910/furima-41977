@@ -7,7 +7,8 @@ app/assets/stylesheets/items/new.css %>
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-
+    
+    <%= render 'shared/error_messages', model: @item %>
     <%= form_with(model: @item, local: true) do |f| %>
 
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
