@@ -8,8 +8,16 @@ app/assets/stylesheets/items/new.css %>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
 
-    <%= form_with(f.object: @item, local: true) do |f| %>  
-      <%= render 'shared/error_messages', model: @item %>
+    <%= form_with(model: @item, local: true) do |f| %>  
+      <%= render 'shared/error_messages', model: f.object %>
+
+※変更点
+・form_withのmodelオプション→@itemを指定
+・エラーメッセージ出力のmodel→f.objectを指定
+
+※変更点
+・form_withのmodelオプション→@itemを指定
+・エラーメッセージ出力のmodel→f.objectを指定
     
 
     <%# 商品画像 %>
