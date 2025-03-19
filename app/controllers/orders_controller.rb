@@ -9,10 +9,12 @@ class OrdersController < ApplicationController
 
   def create
     @order_shipping = OrderShipping.new(order_params)
+
     if @order_shipping.valid?
       @order_shipping.save
-      redirect_to root_path, notice: 
+      redirect_to root_path, notice: "購入が完了しました"
     else
+      @item = Item.find(params[:item_id])
       render :index, status: :unprocessable_entity
     end
   end
@@ -21,8 +23,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order_shipping).permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number)
-          .merge(user_id: current_user.id, item_id: params[:item_id])
-          # .merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+          .merge(user_id: current_user.id, item_id: params[:item_id], )
   end
 
   def set_item

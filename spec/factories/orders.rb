@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :order do
-    user { nil }
-    item { nil }
+    user 
+    item 
   end
 end

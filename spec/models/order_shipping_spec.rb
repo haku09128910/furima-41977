@@ -2,12 +2,9 @@ require 'rails_helper'
 
 RSpec.describe OrderShipping, type: :model do
   before do
-    # ユーザーを作成
-    @user = FactoryBot.create(:user)
-    # 商品を作成
-    @item = FactoryBot.create(:item)
-    # 購入情報を作成
-    @order_shipping = FactoryBot.build(:order_shipping, user: @user, item: @item)
+    @user = FactoryBot.create(:user)  # ユーザー作成
+    @item = FactoryBot.create(:item)  # 商品作成
+    @order_shipping = FactoryBot.build(:order_shipping, user_id: @user.id, item_id: @item.id)
   end
 
   describe '購入情報の保存' do
@@ -16,7 +13,7 @@ RSpec.describe OrderShipping, type: :model do
         expect(@order_shipping).to be_valid
       end
 
-      it '建物が空でも保存できる' do
+      it '建物名が空でも保存できる' do
         @order_shipping.building = ''
         expect(@order_shipping).to be_valid
       end
@@ -29,8 +26,14 @@ RSpec.describe OrderShipping, type: :model do
         expect(@order_shipping.errors.full_messages).to include("Postal code can't be blank")
       end
 
+      it '郵便番号が正しい形式でないと保存できない' do
+        @order_shipping.postal_code = '1234567'
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      end
+
       it '都道府県が空では保存できない' do
-        @order_shipping.prefecture_id = 1  # `1`は無効な値
+        @order_shipping.prefecture_id = 1
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -65,22 +68,16 @@ RSpec.describe OrderShipping, type: :model do
         expect(@order_shipping.errors.full_messages).to include("Phone number is invalid")
       end
 
-      it 'tokenが空では保存できない' do
-        @order_shipping.token = ''
-        @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("Token can't be blank")
-      end
-
       it 'ユーザーが紐付いていないと保存できない' do
-        @order_shipping.user = nil
+        @order_shipping.user_id = nil
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("User must exist")
+        expect(@order_shipping.errors.full_messages).to include("User can't be blank")
       end
 
       it '商品が紐付いていないと保存できない' do
-        @order_shipping.item = nil
+        @order_shipping.item_id = nil
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("Item must exist")
+        expect(@order_shipping.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
