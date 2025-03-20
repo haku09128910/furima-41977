@@ -2,11 +2,11 @@ class OrderShipping
   include ActiveModel::Model  # ActiveModelを利用可能にする
   
   # 保存するデータの属性を定義
-  attr_accessor :user_id, :item_id,  :postal_code, :prefecture_id, :city, :address, :building, :phone_number
+  attr_accessor :user_id, :item_id,  :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :token, :price
 
   # バリデーション
   with_options presence: true do
-    validates :user_id, :item_id,  :postal_code, :prefecture_id, :city, :address, :phone_number
+    validates :user_id, :item_id,  :postal_code, :prefecture_id, :city, :address, :phone_number, :token
   end
 
   validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: "is invalid. Include hyphen(-)" }

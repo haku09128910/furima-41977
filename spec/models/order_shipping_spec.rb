@@ -20,10 +20,10 @@ RSpec.describe OrderShipping, type: :model do
     end
 
     context '購入情報が保存されない場合' do
-      it '郵便番号が空では保存できない' do
-        @order_shipping.postal_code = ''
+      it 'クレジットカード情報(token)が空では保存できない' do
+        @order_shipping.token = ''
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("Postal code can't be blank")
+        expect(@order_shipping.errors.full_messages).to include("Token can't be blank")
       end
 
       it '郵便番号が正しい形式でないと保存できない' do
