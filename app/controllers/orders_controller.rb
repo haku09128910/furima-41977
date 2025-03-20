@@ -4,7 +4,13 @@ class OrdersController < ApplicationController
   before_action :redirect_if_sold_out
 
   def index
-    @order_shipping = OrderShipping.new
+    @item = Item.find(params[:item_id]) # 商品情報を取得
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+    if @item.user_id == current_user.id
+      redirect_to root_path, alert: '出品者は購入できません'
+    else
+      @order_shipping = OrderShipping.new
+    end
   end
 
   def create
@@ -35,7 +41,7 @@ class OrdersController < ApplicationController
   def pay_item
     order = Order.last # 最新のOrderを取得
     @item_price = Item.find(order.item_id).price
-    Payjp.api_key = "sk_test_79b03f593759d5ff412c0d5f"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
       amount: @item_price,  # 商品の値段
       card: order_params[:token],    # カードトークン
