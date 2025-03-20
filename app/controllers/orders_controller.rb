@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
       @order_shipping.save
       pay_item
       
-      # binding.pry
+      
       redirect_to root_path, notice: "購入が完了しました"
     else
       @item = Item.find(params[:item_id])
