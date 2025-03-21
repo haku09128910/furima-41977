@@ -16,7 +16,7 @@ class OrderShipping
   validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "is invalid" }
 
   def save
-    return false unless valid?  # バリデーションエラーがあれば保存しない
+    
 
     order = Order.create(user_id: user_id, item_id: item_id)
     
