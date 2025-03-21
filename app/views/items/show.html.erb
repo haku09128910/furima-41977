@@ -34,7 +34,7 @@
    <% end %>
 
     <% else %>
-      <%= link_to "購入画面に進む", item_orders_path(@item) ,class:"item-red-btn"%>
+      <%= link_to '購入画面に進む', item_orders_path(@item), data: { turbo: false },class:"item-red-btn"%>
     <% end %>
   <% end %>
 
