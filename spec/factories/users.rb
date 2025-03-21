@@ -9,5 +9,6 @@ FactoryBot.define do
     last_name_kana { 'ヤマダ' } # 全角カナの名字
     first_name_kana { 'タロウ' } # 全角カナの名前
     birth_date { Faker::Date.birthday(min_age: 18, max_age: 65) } # ランダムな誕生日（18〜65歳）
+
   end
 end

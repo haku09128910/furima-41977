@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-
+    redirect_if_sold_out
   end
 
   def update
@@ -54,6 +54,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def redirect_if_sold_out
+    redirect_to root_path, alert: 'この商品はすでに売り切れです。' if @item.order.present?
   end
 
 end
