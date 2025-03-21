@@ -2,7 +2,7 @@ class OrderShipping
   include ActiveModel::Model  # ActiveModelを利用可能にする
   
   # 保存するデータの属性を定義
-  attr_accessor :user_id, :item_id,  :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :token, :price
+  attr_accessor :user_id, :item_id,  :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :token
 
   # バリデーション
   with_options presence: true do
@@ -16,7 +16,7 @@ class OrderShipping
   validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "is invalid" }
 
   def save
-    
+
 
     order = Order.create(user_id: user_id, item_id: item_id)
     

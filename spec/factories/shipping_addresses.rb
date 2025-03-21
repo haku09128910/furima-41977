@@ -1,4 +1,4 @@
-FactoryBot.define do
+
   factory :shipping_address do
     order
     postal_code { '123-4567' }
@@ -8,4 +8,4 @@ FactoryBot.define do
     building { '' }
     phone_number { '09012345678' }
   end
-end
+
