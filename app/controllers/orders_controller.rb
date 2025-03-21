@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
   before_action :redirect_if_sold_out
 
   def index
-    @item = Item.find(params[:item_id]) # 商品情報を取得
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     if @item.user_id == current_user.id
       redirect_to root_path, alert: '出品者は購入できません'
